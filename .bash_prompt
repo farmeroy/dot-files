@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Set Colors
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+GREEN="\[$(tput setaf 2)\]"
+RESET="\[$(tput sgr0)\]"
+
+PS1="${GREEN}\u \e[0:95m\]\W\[\e[0m\]\e[0:33m\]\e[0:37]\$(parse_git_branch)${RESET} $ "
+# PS1="\[\e[0:32m\]\u\s \e[0:95m\]\W\[\e[0m\] \e[0:33m\]\e[0:37]\$ "
+export PS1;
+
+
