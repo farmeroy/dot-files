@@ -137,8 +137,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   " colorscheme
   " Plug 'romgrl/doom-one.vim'
-  Plug 'whatyouhide/vim-gotham'
-call plug#end()
+  " Plug 'whatyouhide/vim-gotham'
+  Plug 'kamykn/spelunker.vim'
+  Plug 'kamykn/popup-menu.nvim'
+  call plug#end()
 "}}}
 
 "MAPPINGS -----------------------------------------{{{
@@ -188,4 +190,11 @@ augroup END
 autocmd BufNewFile *.jsx 0r ~/.vim/skeletons/react-func-comp.jsx
 autocmd BufNewFile *.html 0r ~/.vim/skeletons/html-boilerplate.html
 "  }}}
+
+" Plugin Settings ---------------------------------------------{{{
+" spelunker settings 
+let g:spelunker_disable_uri_checking = 1
+let g:spelunker_disable_email_checking = 1
+
+" }}}
 
