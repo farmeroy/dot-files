@@ -1,0 +1,16 @@
+[user]
+  name = Raffaele Cataldo
+	email = kemanicataldo@gmail.com
+  username = farmeroy
+[core]
+  editor = nvim
+[alias]
+  a = add
+  c = commit
+  cm = commit -m
+  d = diff
+  dc = diff --cached
+  ps = push
+  pso = push origin
+  psom = push origin master
+  st = status
