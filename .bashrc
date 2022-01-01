@@ -1,7 +1,7 @@
 # this line makes sure to not list untracked files, only the dot files we track, when we run config status 
 alias config='/usr/bin/git --git-dir=/Users/Raffles/dotfiles/ --work-tree=/Users/Raffles'
-alias tree='tree --dirsfirst -F'
-
+# alias tree='tree --dirsfirst -F'
+alias g='git'
 
 # add date/time to history
 HISTTIMEFORMAT="%F %T "
