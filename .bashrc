@@ -3,6 +3,8 @@ alias config='/usr/bin/git --git-dir=/Users/Raffles/dotfiles/ --work-tree=/Users
 # alias tree='tree --dirsfirst -F'
 alias g='git'
 
+# to open Minitab
+alias minitab='wine /Users/Raffles/.wine/drive_c/Program\ Files/Minitab/Minitab19/Mtb.exe'
 # add date/time to history
 HISTTIMEFORMAT="%F %T "
 # ignore duplicate commands in history
