@@ -127,8 +127,10 @@ call plug#begin('~/.vim/plugged')
   
   Plug 'othree/yajs.vim'
 
-  Plug 'yuezk/vim-js'
-  Plug 'maxmellon/vim-jsx-pretty'
+  " Plug 'yuezk/vim-js'
+  " Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'pangloss/vim-javascript' 
+  Plug 'chemzqm/vim-jsx-improve'
 
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
