@@ -1,10 +1,11 @@
 # this line makes sure to not list untracked files, only the dot files we track, when we run config status 
 alias config='/usr/bin/git --git-dir=/Users/Raffles/dotfiles/ --work-tree=/Users/Raffles'
+
 # alias tree='tree --dirsfirst -F'
 alias g='git'
 
-# to open Minitab
-alias minitab='wine /Users/Raffles/.wine/drive_c/Program\ Files/Minitab/Minitab19/Mtb.exe'
+alias nv='nvim'
+
 # add date/time to history
 HISTTIMEFORMAT="%F %T "
 # ignore duplicate commands in history
