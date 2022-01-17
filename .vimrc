@@ -142,6 +142,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'whatyouhide/vim-gotham'
   Plug 'kamykn/spelunker.vim'
   Plug 'kamykn/popup-menu.nvim'
+  Plug 'alvan/vim-closetag'
   call plug#end()
 "}}}
 
@@ -197,6 +198,7 @@ autocmd BufNewFile *.html 0r ~/.vim/skeletons/html-boilerplate.html
 " spelunker settings 
 let g:spelunker_disable_uri_checking = 1
 let g:spelunker_disable_email_checking = 1
-
-" }}}
+" closetag
+let g:closetag_filenames = '*.html,*.jsx'
+"}}}
 
