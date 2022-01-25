@@ -6,6 +6,10 @@ alias g='git'
 
 alias nv='nvim'
 
+# Android development tools
+export ANDROID_SDK=/Users/Raffles/Library/Android/sdk
+export PATH=/Users/Raffles/Library/Android/sdk/platform-tools:$PATH
+
 # add date/time to history
 HISTTIMEFORMAT="%F %T "
 # ignore duplicate commands in history
