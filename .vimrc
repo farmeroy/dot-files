@@ -25,6 +25,7 @@
 :syntax on
 :set number
 :set showmode
+:set relativenumber
 
 " Show partial command you type in last line
 :set showcmd
