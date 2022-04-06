@@ -7,7 +7,7 @@ alias g='git'
 alias nv='nvim'
 
 alias venv='source venv/bin/activate'
-alias newvenv='python3 -m venv /path/to/new/virtual/environment'
+alias mkvenv='python3 -m venv venv'
 
 # Android development tools
 export ANDROID_SDK=/Users/Raffles/Library/Android/sdk
