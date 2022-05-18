@@ -9,6 +9,9 @@ alias nv='nvim'
 alias venv='source venv/bin/activate'
 alias mkvenv='python3 -m venv venv'
 
+alias encore='ssh-add -D && ssh-add ~/.ssh/encore_rsa'
+alias farmeroy='ssh-add -D && ssh-add ~/.ssh/id_rsa'
+
 # Android development tools
 export ANDROID_SDK=/Users/Raffles/Library/Android/sdk
 export PATH=/Users/Raffles/Library/Android/sdk/platform-tools:$PATH
