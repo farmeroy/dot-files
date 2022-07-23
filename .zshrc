@@ -45,7 +45,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -113,6 +113,9 @@ eval "$(starship init zsh)"
 alias encore='ssh-add -D && ssh-add ~/.ssh/encore_id'
 alias farmeroy='ssh-add -D && ssh-add ~/.ssh/farmeroy_rsa'
 
+alias nv='nvim'
+alias vimrc='nvim ~/.vimrc'
+alias zshrc='nvim ~/.zshrc'
 alias g='git'
 alias icat="kitty +kitten icat"
 alias vimkitty="kitty -o allow_remote_control=yes --single-instance --listen-on unix:@mykitty"
