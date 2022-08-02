@@ -14,6 +14,9 @@
 :set expandtab
 :set cursorline
 :set scrolloff=8
+:set clipboard=unnamedplus
+:set mouse=a
+:set mouse=v
 :set exrc "override with a local .nvimrc
 :filetype on
 :filetype plugin on
@@ -97,7 +100,6 @@ let g:closetag_filenames = '*.html,*.jsx'
 
 
 :colo iceberg
-
 :command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
 
