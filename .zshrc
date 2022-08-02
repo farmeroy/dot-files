@@ -119,4 +119,6 @@ alias zshrc='nvim ~/.zshrc'
 alias g='git'
 alias icat="kitty +kitten icat"
 alias vimkitty="kitty -o allow_remote_control=yes --single-instance --listen-on unix:@mykitty"
+# MOC player aliases
+alias mocp='mocp -T transparent-background'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
