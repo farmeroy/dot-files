@@ -16,7 +16,7 @@
 :set scrolloff=8
 :set clipboard=unnamedplus
 :set mouse=a
-:set mouse=v
+
 :set exrc "override with a local .nvimrc
 :filetype on
 :filetype plugin on
