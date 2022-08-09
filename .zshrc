@@ -113,6 +113,13 @@ eval "$(starship init zsh)"
 alias encore='ssh-add -D && ssh-add ~/.ssh/encore_id'
 alias farmeroy='ssh-add -D && ssh-add ~/.ssh/farmeroy_rsa'
 
+# protect file deletion
+alias rm='trash'
+
+# start python venv
+alias venv='source venv/bin/activate'
+alias mkvenv='python3 -m venv venv'
+
 alias nv='nvim'
 alias vimrc='nvim ~/.vimrc'
 alias zshrc='nvim ~/.zshrc'
