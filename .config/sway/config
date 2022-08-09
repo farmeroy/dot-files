@@ -12,6 +12,10 @@ gaps outer 5
 # disable window title bar
 default_border pixel 1 
 hide_edge_borders smart
+
+
+set $gnome-schema org.gnome.desktop.interface
+
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -21,15 +25,15 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term kitty
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
-# set $menu exec $term --class=launcher -e bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec --'
+# set $menu dmenu_path | dmenu | xargs swaymsg exec --
+ bindsym $mod+d exec --no-startup-id rofi -show combi 
 
 
 # Windows config
-# for_window [app_id="^launcher$"] floating enable, border none, opacity 0.8uh
 
 include /etc/sway/config-vars.d/*
 
@@ -47,22 +51,18 @@ output * bg /usr/share/backgrounds/pexels-laython-photos-12709867.jpg fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
-#
-# Example configuration:
-#
-exec swayidle -w \
+exec swayidle \
          timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
+         timeout 600 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
+        before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
-#
-# Example configuration:
-#
+
   input "2:14:ETPS/2_Elantech_Touchpad" {
       dwt enabled
       tap enabled
@@ -89,10 +89,10 @@ bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ 
 bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # screen backlight, first set min and restore previous
-exec light -N 5
-exec light -I
 bindsym --locked XF86MonBrightnessUp   exec brightnessctl -d "amdgpu_bl0" set +5% 
 bindsym --locked XF86MonBrightnessDown exec brightnessctl -d "amdgpu_bl0" set 5%- 
+
+
 
 ### Key bindings
 #
@@ -105,7 +105,7 @@ bindsym --locked XF86MonBrightnessDown exec brightnessctl -d "amdgpu_bl0" set 5%
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    # bindsym $mod+d exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -120,6 +120,8 @@ bindsym --locked XF86MonBrightnessDown exec brightnessctl -d "amdgpu_bl0" set 5%
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #
+
+bindsym $mod+t border toggle
 # Moving around:
 #
     # Move your focus around
