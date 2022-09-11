@@ -1,9 +1,10 @@
-[user]
-  name = Raffaele Cataldo
-	email = kemanicataldo@gmail.com
-  username = farmeroy
 [core]
   editor = nvim
+[includeIf "gitdir:~/"]
+  path = ~/.gitconfig-personal
+[includeIf "gitdir:~/Encore/"]
+  path = ~/.gitconfig-work
+
 [alias]
   a = add
   c = commit
