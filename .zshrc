@@ -115,6 +115,12 @@ alias farmeroy='ssh-add -D && ssh-add ~/.ssh/farmeroy_rsa'
 
 # protect file deletion
 alias rm='trash'
+# protect file overwrites
+alias cp='cp -i'
+
+# gcalcli aliases
+alias gcalkemani='gcalcli --config-folder ~/.gcalclirc-kemani'
+alias gcalencore='gcalcli --config-folder ~/.config/gcalclirc '
 
 # start python venv
 alias venv='source venv/bin/activate'
