@@ -17,6 +17,9 @@
 :set clipboard=unnamedplus
 :set mouse=a
 
+" ignore node_modules when using grep
+:set wildignore=*/node_modules/*
+
 :set exrc "override with a local .nvimrc
 :filetype on
 :filetype plugin on
