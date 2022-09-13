@@ -4,20 +4,20 @@
 #
 
 smart_gaps on
-gaps inner 5
-gaps outer 5
+gaps inner 4
+gaps outer 4
 # disable window title bar
-default_border pixel 1 
+default_border pixel 2 
 hide_edge_borders smart
 
 for_window [class="Skype"] floating enable
-
 
 set $gnome-schema org.gnome.desktop.interface
 
 # hopefully enable screen sharing
 # in ~/.config/xdg-desktop-portal-wlr/config, set: choose_type=none
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+exec dbus-update-activation-environment  WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 
 # Logo key. Use Mod1 for Alt.
@@ -52,7 +52,7 @@ include /etc/sway/config-vars.d/*
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 # output * bg /usr/share/backgrounds/pexels-capture-blinks-2622208.jpg fill
-output * bg /usr/share/backgrounds/pexels-laython-photos-12709867.jpg fill
+output * bg /usr/share/backgrounds/Optical_Fibers_in_Dark_by_Elena_Stravoravdi.jpg fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
