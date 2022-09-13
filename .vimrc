@@ -72,9 +72,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'nvim-lua/plenary.nvim' " telescope dependency
   Plug 'BurntSushi/ripgrep' " recursive fuzzy finder that follows .gitignore rules
   Plug 'nvim-telescope/telescope.nvim' 
+  Plug 'nvim-telescope/telescope-media-files.nvim'
   Plug 'nvim-lua/popup.nvim'
   "Plug 'edluffy/hologram.nvim' " kitty terminal image viewer
-  Plug 'nvim-telescope/telescope-media-files.nvim'
   """Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   " Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'} " vim keybindings to navigate between vim and kitty windows
   Plug 'fladson/vim-kitty' " syntax hilighting for .conf files
@@ -305,3 +305,4 @@ EOF
 
 :nnoremap <leader>ff :Telescope find_files<CR>
 :nnoremap <leader>lg :Telescope live_grep<CR>
+:nnoremap <leader>fi :Telescope media_files<CR>
