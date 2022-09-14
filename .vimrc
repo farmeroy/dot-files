@@ -14,7 +14,7 @@
 :set expandtab
 :set cursorline
 :set scrolloff=8
-:set clipboard=unnamedplus
+:set clipboard+=unnamedplus
 :set mouse=a
 
 " ignore node_modules when using grep
@@ -43,6 +43,7 @@ nnoremap <c-l> <c-w>l
 :nnoremap <C-t> :NERDTreeToggle<CR>
 " source .vimrc
 :nnoremap <leader>sv :source $MYVIMRC<cr>
+
 
 
 " PlugInstall
