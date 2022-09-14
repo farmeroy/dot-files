@@ -23,11 +23,30 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE. from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile import extension
+
+import subprocess
 import os
+from libqtile import hook
+
+# @hook.subscribe.startup_once
+# def dbus_register():
+#     id = os.environ.get('DESKTOP_AUTOSTART_ID')
+#     if not id:
+#         return
+#     subprocess.Popen(['dbus-send',
+#                       '--session',
+#                       '--print-reply',
+#                       '--dest=org.gnome.SessionManager',
+#                       '/org/gnome/SessionManager',
+#                       'org.gnome.SessionManager.RegisterClient',
+#                       'string:qtile',
+#                       'string:' + id])
+
 
 mod = "mod4"
 terminal = "/usr/bin/kitty" 
@@ -35,7 +54,14 @@ FONTSIZE = 14
 FOREGROUND = '#c6c8d1'
 FONT = 'Ubuntu'
 
-os.system("picom -b")
+@hook.subscribe.startup_once
+def picom_start():
+    os.system("picom -b")
+
+@hook.subscribe.startup_complete
+def network_widget():
+    os.system("nm-applet &")
+    os.system("xss-lock xsecurelock &")
 
 
 floating_layout=True
@@ -87,7 +113,10 @@ keys = [
     Key([], 'XF86AudioMicMute', lazy.spawn("pactl set-source-mute alsa_input.pci-0000_05_00.6.analog-stereo toggle"), desc="raise volume"),
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl -d 'amdgpu_bl0' set +5%"), desc="Brightness up"),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl -d 'amdgpu_bl0' set 5%-"), desc="Brightness down"),
-    Key(['control', 'mod1'], 'l', lazy.spawn('xsecurelock'), desc="Lock the screen")
+    Key(['control', 'mod1'], 'l', lazy.spawn('xsecurelock'), desc="Lock the screen"),
+    # Key([mod, 'control'], 'l', lazy.spawn('gnome-screensaver-command -l')),
+    # Key([mod, 'control'], 'q', lazy.spawn('gnome-session-quit --logout --no-prompt')),
+    # Key([mod, 'shift', 'control'], 'q', lazy.spawn('gnome-session-quit --power-off')),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -130,7 +159,7 @@ layouts = [
         margin = 2,
         ),
     layout.Max(),
-    layout.Stack(num_stacks=2),
+    # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
     # layout.MonadTall(),
@@ -155,10 +184,8 @@ screens = [
         wallpaper_mode="fill",
         top=bar.Bar(
             [
-                widget.CurrentLayout(
-                    font=FONT,
-                    fontsize=FONTSIZE,
-                    foreground=FOREGROUND, 
+                widget.CurrentLayoutIcon(
+                    scale=0.6
                     ),
                 widget.GroupBox(),
                 widget.Prompt(),
@@ -180,23 +207,35 @@ screens = [
                 #     backlight_name='amdgpu_bl0',
                 #     fmt='Bright: {}'
                 #     ),
+                widget.Sep(
+                    padding=6,
+                    foreground=FOREGROUND
+                    ),
                 widget.PulseVolume(
                     font=FONT,
                     fontsize=FONTSIZE,
                     foreground=FOREGROUND, 
-                    fmt='| Vol: {}'
+                    fmt=' Vol: {}'
+                    ),
+                widget.Sep(
+                    padding=6,
+                    foreground=FOREGROUND
                     ),
                 widget.Battery(
                     font=FONT,
                     fontsize=FONTSIZE,
                     foreground=FOREGROUND, 
-                    format='| Bat: {percent:2.0%} {hour:d}:{min:02d}h'
+                    format=' Bat: {percent:2.0%} {hour:d}:{min:02d}h'
+                    ),
+                widget.Sep(
+                    padding=6,
+                    foreground=FOREGROUND
                     ),
                 widget.Clock(
                     font=FONT,
                     fontsize=FONTSIZE,
                     foreground=FOREGROUND, 
-                    format="| %Y-%m-%d %a %I:%M %p"),
+                    format=" %a %H:%M "),
                 # widget.QuickExit(),
             ],
             size=28,
