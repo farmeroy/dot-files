@@ -1,51 +1,12 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE. from libqtile import bar, layout, widget
 from libqtile import bar, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
+from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile import extension
 
-import subprocess
 import os
 from libqtile import hook
 
-# @hook.subscribe.startup_once
-# def dbus_register():
-#     id = os.environ.get('DESKTOP_AUTOSTART_ID')
-#     if not id:
-#         return
-#     subprocess.Popen(['dbus-send',
-#                       '--session',
-#                       '--print-reply',
-#                       '--dest=org.gnome.SessionManager',
-#                       '/org/gnome/SessionManager',
-#                       'org.gnome.SessionManager.RegisterClient',
-#                       'string:qtile',
-#                       'string:' + id])
 
 
 mod = "mod4"
@@ -61,7 +22,7 @@ def picom_start():
 @hook.subscribe.startup_complete
 def network_widget():
     os.system("nm-applet &")
-    os.system("xss-lock xsecurelock &")
+    os.system("xss-lock -n /usr/lib/xsecurelock/dimmer -l --  xsecurelock &")
 
 
 floating_layout=True
@@ -106,6 +67,8 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], 'd', lazy.spawn("rofi -show run"), desc="Launch rofi"),
+    Key([mod], 'f', lazy.spawn('rofi -show filebrowser'), desc="launch rofi filebrowser"),
+    Key([mod], "t", lazy.spawn('telegram-desktop'), desc="launch telegram"),
     Key([], 'Print', lazy.spawn("flameshot gui"), desc="Screenshot with flameshot"),
     Key([], 'XF86AudioLowerVolume', lazy.spawn("pactl set-sink-volume  alsa_output.pci-0000_05_00.6.analog-stereo -5%"), desc="lower volume"),
     Key([], 'XF86AudioRaiseVolume', lazy.spawn("pactl set-sink-volume alsa_output.pci-0000_05_00.6.analog-stereo +5%"), desc="raise volume"),
@@ -114,9 +77,12 @@ keys = [
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl -d 'amdgpu_bl0' set +5%"), desc="Brightness up"),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl -d 'amdgpu_bl0' set 5%-"), desc="Brightness down"),
     Key(['control', 'mod1'], 'l', lazy.spawn('xsecurelock'), desc="Lock the screen"),
-    # Key([mod, 'control'], 'l', lazy.spawn('gnome-screensaver-command -l')),
-    # Key([mod, 'control'], 'q', lazy.spawn('gnome-session-quit --logout --no-prompt')),
-    # Key([mod, 'shift', 'control'], 'q', lazy.spawn('gnome-session-quit --power-off')),
+    KeyChord([mod], 'o', [
+        Key([], 'j', lazy.spawn("picom-trans -c -10")),
+        Key([], 'k', lazy.spawn('picom-trans -c +10')),
+        ],
+        mode="Opacity"
+        ),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -145,7 +111,7 @@ for i in groups:
         ]
     )
 groups.append(ScratchPad('scratchpad', [
-    DropDown('term', 'kitty', width=0.4, height=0.5, x=0.3, y=0.2, opacity=1)
+    DropDown('term', 'kitty', width=0.4, height=0.5, x=0.3, y=0.2, opacity=1),
     ]))
 keys.extend([
     Key([], "F11", lazy.group['scratchpad'].dropdown_toggle('term')),
@@ -154,33 +120,26 @@ keys.extend([
 
 layouts = [
     layout.Columns(
-        border_focus=["#161821", "#6b7089"], 
+        border_focus=["#161821", "#6b7089"],
+        border_focus_stack=["#e2a479", "#e9b189"],
         border_width=2,
-        margin = 2,
+        margin=1,
+        insert_position=1,
         ),
     layout.Max(),
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
 ]
 
 widget_defaults = dict(
-    font="sans",
-    fontsize=12,
-    padding=3,
-)
+    font=FONT,
+    fontsize=FONTSIZE,
+    padding=6,
+    foreground=FOREGROUND,
+    )
 extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        wallpaper="/usr/share/backgrounds/Optical_Fibers_in_Dark_by_Elena_Stravoravdi.jpg",
+        wallpaper="/usr/share/backgrounds/spirited.jpg",
         wallpaper_mode="fill",
         top=bar.Bar(
             [
@@ -190,9 +149,6 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(
-                    font=FONT,
-                    fontsize=FONTSIZE,
-                    foreground=FOREGROUND, 
                     ),
                 widget.Chord(
                     chords_colors={
@@ -201,40 +157,29 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.Systray(
-                    padding=6,
                     ),
                 # widget.Backlight(
                 #     backlight_name='amdgpu_bl0',
                 #     fmt='Bright: {}'
                 #     ),
                 widget.Sep(
-                    padding=6,
-                    foreground=FOREGROUND
+                    ),
+                widget.Pomodoro(
+                    color_inactive=FOREGROUND,
+                    ),
+                widget.Sep(
                     ),
                 widget.PulseVolume(
-                    font=FONT,
-                    fontsize=FONTSIZE,
-                    foreground=FOREGROUND, 
                     fmt=' Vol: {}'
                     ),
                 widget.Sep(
-                    padding=6,
-                    foreground=FOREGROUND
                     ),
                 widget.Battery(
-                    font=FONT,
-                    fontsize=FONTSIZE,
-                    foreground=FOREGROUND, 
                     format=' Bat: {percent:2.0%} {hour:d}:{min:02d}h'
                     ),
                 widget.Sep(
-                    padding=6,
-                    foreground=FOREGROUND
                     ),
                 widget.Clock(
-                    font=FONT,
-                    fontsize=FONTSIZE,
-                    foreground=FOREGROUND, 
                     format=" %a %H:%M "),
                 # widget.QuickExit(),
             ],
