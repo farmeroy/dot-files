@@ -24,6 +24,13 @@ def network_widget():
     os.system("nm-applet &")
     os.system("xss-lock -n /usr/lib/xsecurelock/dimmer -l --  xsecurelock &")
 
+@lazy.function
+def adjust_margins(qtile, amount):
+    qtile.current_layout.margin += amount
+    if qtile.current_layout.margin < 1:
+        qtile.current_layout.margin = 0
+    qtile.current_group.layout_all()
+
 
 floating_layout=True
 
@@ -83,6 +90,12 @@ keys = [
         ],
         mode="Opacity"
         ),
+    KeyChord([mod], 'm', [
+        Key([], 'j',adjust_margins(amount=2), desc="Margin increase" ),
+        Key([], 'k', adjust_margins(amount=(-2)), desc="Decrease margins")
+        ],
+        mode="Margins"),
+    Key([mod, 'control'], 'f', lazy.window.toggle_floating(), desc="float current window")
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -195,8 +208,8 @@ screens = [
 # Drag floating layouts.
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([mod], "Button2", lazy.window.set_size_floating(), start=lazy.window.get_size()),
-    Click([mod], "Button3", lazy.window.bring_to_front()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None
@@ -215,8 +228,10 @@ floating_layout = layout.Floating(
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
         Match(wm_class='telegram-desktop'),
-        Match(wm_class="skype")
-    ]
+        Match(wm_class="skype"),
+        Match(wm_class='around'),
+    ],
+
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
