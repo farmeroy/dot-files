@@ -126,3 +126,4 @@ alias farmeroy='ssh-add -D && ssh-add ~/.ssh/farmeroy_rsa'
 alias g='git'
 alias icat="kitty +kitten icat"
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+. "$HOME/.cargo/env"

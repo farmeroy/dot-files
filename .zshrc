@@ -3,6 +3,8 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export XSECURELOCK_FONT="Ubuntu"
+export XSECURELOCK_PASSWORD_PROMPT="time"
 
 # autocompletion 
 # source ~/Zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh # a little too much
@@ -125,6 +127,9 @@ alias gcalencore='gcalcli --config-folder ~/.config/gcalclirc '
 # start python venv
 alias venv='source venv/bin/activate'
 alias mkvenv='python3 -m venv venv'
+
+# easier access to encore rc
+alias encorerc='~/Encore/encore-rc'
 
 alias nv='nvim'
 alias vimrc='nvim ~/.vimrc'

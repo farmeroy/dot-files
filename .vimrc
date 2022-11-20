@@ -18,7 +18,7 @@
 :set mouse=a
 
 " ignore node_modules when using grep
-:set wildignore=*/node_modules/*
+:set wildignore+=*/node_modules/*
 
 :set exrc "override with a local .nvimrc
 :filetype on
@@ -50,6 +50,7 @@ nnoremap <c-l> <c-w>l
 call plug#begin('~/.vim/plugged')
   Plug 'alvan/vim-closetag'
   Plug 'cocopon/iceberg.vim'
+  Plug 'cormacrelf/vim-colors-github'
   Plug 'neoclide/vim-jsx-improve'
   Plug 'ctrlpvim/ctrlp.vim'
   "Plug 'dracula/vim',{'name':'dracula'}
@@ -80,6 +81,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'} " vim keybindings to navigate between vim and kitty windows
   Plug 'fladson/vim-kitty' " syntax hilighting for .conf files
   Plug 'pantharshit00/vim-prisma'
+  Plug 'rust-lang/rust.vim'
 call plug#end()
 
 " Nerdtree Settings
@@ -306,4 +308,4 @@ EOF
 
 :nnoremap <leader>ff :Telescope find_files<CR>
 :nnoremap <leader>lg :Telescope live_grep<CR>
-:nnoremap <leader>fi :Telescope media_files<CR>
+:nnoremap <leader>fm :Telescope media_files<CR>

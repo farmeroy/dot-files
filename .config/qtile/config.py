@@ -133,8 +133,8 @@ keys.extend([
 
 layouts = [
     layout.Columns(
-        border_focus=["#161821", "#6b7089"],
-        border_focus_stack=["#e2a479", "#e9b189"],
+        border_focus=[ "#91aCD1"],
+        border_focus_stack=[ "#e9b189"],
         border_width=2,
         margin=1,
         insert_position=1,
@@ -193,7 +193,10 @@ screens = [
                 widget.Sep(
                     ),
                 widget.Clock(
-                    format=" %a %H:%M "),
+                    format=" %a %H:%M ",
+                    # timezone="America/Los_Angeles",
+                    timezone="America/New_York"
+                    ),
                 # widget.QuickExit(),
             ],
             size=28,
