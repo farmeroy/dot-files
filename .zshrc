@@ -112,8 +112,8 @@ fi
 eval "$(starship init zsh)"
 
 # handle ssh identities 
-alias encore='ssh-add -D && ssh-add ~/.ssh/encore_id'
-alias farmeroy='ssh-add -D && ssh-add ~/.ssh/farmeroy_rsa'
+alias encore='eval $(ssh-agent) && ssh-add -D && ssh-add ~/.ssh/encore_id'
+alias farmeroy='eval $(ssh-agent) && ssh-add -D && ssh-add ~/.ssh/farmeroy_rsa'
 
 # protect file deletion
 alias rm='trash'
@@ -130,6 +130,7 @@ alias mkvenv='python3 -m venv venv'
 
 # easier access to encore rc
 alias encorerc='~/Encore/encore-rc'
+alias encoreapp='~/Encore/encore-app/'
 
 alias nv='nvim'
 alias vimrc='nvim ~/.vimrc'

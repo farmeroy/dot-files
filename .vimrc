@@ -48,10 +48,11 @@ nnoremap <c-l> <c-w>l
 
 " PlugInstall
 call plug#begin('~/.vim/plugged')
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
   Plug 'alvan/vim-closetag'
   Plug 'cocopon/iceberg.vim'
   Plug 'cormacrelf/vim-colors-github'
-  Plug 'neoclide/vim-jsx-improve'
+  " Plug 'neoclide/vim-jsx-improve'
   Plug 'ctrlpvim/ctrlp.vim'
   "Plug 'dracula/vim',{'name':'dracula'}
   Plug 'jiangmiao/auto-pairs'
@@ -103,7 +104,9 @@ let g:closetag_filenames = '*.html,*.jsx'
 " let g:UltiSnipsJumpForwardTrigger = '<Tab>'
 " let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>' "Shift tab
 "}}}
-
+"
+" Rust 
+let g:rustfmt_autosave = 1
 
 :colo iceberg
 :command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')

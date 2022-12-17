@@ -194,8 +194,8 @@ screens = [
                     ),
                 widget.Clock(
                     format=" %a %H:%M ",
-                    # timezone="America/Los_Angeles",
-                    timezone="America/New_York"
+                    timezone="America/Los_Angeles",
+                    # timezone="America/New_York"
                     ),
                 # widget.QuickExit(),
             ],
