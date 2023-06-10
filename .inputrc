@@ -1,0 +1,3 @@
+// vim mode for command line apps (mysql, postgres etc.) also needs .editrc
+set editing-mode vi
+set keymap vi-command

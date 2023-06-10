@@ -15,6 +15,8 @@ FONTSIZE = 14
 FOREGROUND = '#c6c8d1'
 FONT = 'Ubuntu'
 
+TIMEZONE = [ "America/Los_Angeles", "America/New_York", "America/Phoenix" ]
+
 @hook.subscribe.startup_once
 def picom_start():
     os.system("picom -b")
@@ -84,6 +86,7 @@ keys = [
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl -d 'amdgpu_bl0' set +5%"), desc="Brightness up"),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl -d 'amdgpu_bl0' set 5%-"), desc="Brightness down"),
     Key(['control', 'mod1'], 'l', lazy.spawn('xsecurelock'), desc="Lock the screen"),
+    Key(['control', 'mod1'], 's', lazy.spawn('systemctl suspend'), desc="suspend the system"),
     KeyChord([mod], 'o', [
         Key([], 'j', lazy.spawn("picom-trans -c -10")),
         Key([], 'k', lazy.spawn('picom-trans -c +10')),
@@ -194,8 +197,7 @@ screens = [
                     ),
                 widget.Clock(
                     format=" %a %H:%M ",
-                    timezone="America/Los_Angeles",
-                    # timezone="America/New_York"
+                    timezone="America/Los_Angeles"
                     ),
                 # widget.QuickExit(),
             ],
@@ -230,7 +232,7 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-        Match(wm_class='telegram-desktop'),
+        # Match(wm_class='telegram-desktop'),
         Match(wm_class="skype"),
         Match(wm_class='around'),
     ],

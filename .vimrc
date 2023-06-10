@@ -5,7 +5,7 @@
 :inoremap jk <Esc>
 :vnoremap jk <Esc>
 :tmap <Esc> <C-\><C-n>
-:set number
+:set number 
 :set relativenumber
 :set autoindent
 :set tabstop=2
@@ -107,6 +107,7 @@ let g:closetag_filenames = '*.html,*.jsx'
 "
 " Rust 
 let g:rustfmt_autosave = 1
+
 
 :colo iceberg
 :command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
