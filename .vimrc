@@ -82,7 +82,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'} " vim keybindings to navigate between vim and kitty windows
   Plug 'fladson/vim-kitty' " syntax hilighting for .conf files
   Plug 'pantharshit00/vim-prisma'
-  Plug 'rust-lang/rust.vim'
+ Plug 'rust-lang/rust.vim'
 call plug#end()
 
 " Nerdtree Settings

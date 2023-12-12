@@ -6,6 +6,13 @@ export ZSH="$HOME/.oh-my-zsh"
 export XSECURELOCK_FONT="Ubuntu"
 export XSECURELOCK_PASSWORD_PROMPT="time"
 
+# Path for Golang
+export PATH=$PATH:/usr/local/go/bin
+
+# Path for Deno
+export DENO_INSTALL="/home/raffaele/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
 # autocompletion 
 # source ~/Zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh # a little too much
 # skip_global_compinit=1
@@ -145,3 +152,14 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+alias m269-23j='cd "/home/raffaele/Documents/OpenUniversity/m269-23j";source /home/raffaele/venvs/m269-23j/bin/activate'
+alias nb='jupyter notebook &'
+alias allowed='python3.10 "/home/raffaele/Documents/OpenUniversity/m269-23j/allowed.py" -c "/home/raffaele/Documents/OpenUniversity/m269-23j/m269.json"'
+
+# pnpm
+export PNPM_HOME="/home/raffaele/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
