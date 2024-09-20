@@ -83,8 +83,8 @@ keys = [
     Key([], 'XF86AudioRaiseVolume', lazy.spawn("pactl set-sink-volume alsa_output.pci-0000_05_00.6.analog-stereo +5%"), desc="raise volume"),
     Key([], 'XF86AudioMute', lazy.spawn("pactl set-sink-mute alsa_output.pci-0000_05_00.6.analog-stereo toggle"), desc="raise volume"),
     Key([], 'XF86AudioMicMute', lazy.spawn("pactl set-source-mute alsa_input.pci-0000_05_00.6.analog-stereo toggle"), desc="raise volume"),
-    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl -d 'amdgpu_bl0' set +5%"), desc="Brightness up"),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl -d 'amdgpu_bl0' set 5%-"), desc="Brightness down"),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl -d 'amdgpu_bl1' set +5%"), desc="Brightness up"),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl -d 'amdgpu_bl1' set 5%-"), desc="Brightness down"),
     Key(['control', 'mod1'], 'l', lazy.spawn('xsecurelock'), desc="Lock the screen"),
     Key(['control', 'mod1'], 's', lazy.spawn('systemctl suspend'), desc="suspend the system"),
     KeyChord([mod], 'o', [
@@ -198,6 +198,8 @@ screens = [
                 widget.Clock(
                     format=" %a %H:%M ",
                     timezone="America/Los_Angeles"
+                    # timezone="Europe/Berlin"
+                    # timezone="America/New_York"
                     ),
                 # widget.QuickExit(),
             ],
