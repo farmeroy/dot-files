@@ -2,7 +2,7 @@
   editor = nvim
 [includeIf "gitdir:~/"]
   path = ~/.gitconfig-personal
-[includeIf "gitdir:~/Encore/"]
+[includeIf "gitdir:~/Consumer51/"]
   path = ~/.gitconfig-work
 
 [alias]

@@ -121,6 +121,7 @@ eval "$(starship init zsh)"
 # handle ssh identities 
 alias encore='eval $(ssh-agent) && ssh-add -D && ssh-add ~/.ssh/encore_id'
 alias farmeroy='eval $(ssh-agent) && ssh-add -D && ssh-add ~/.ssh/farmeroy_rsa'
+alias c51='eval $(ssh-agent) && ssh-add -D && ssh-add ~/.ssh/consumer51-bitbucket'
 
 # protect file deletion
 alias rm='trash'
@@ -155,6 +156,7 @@ export NVM_DIR="$HOME/.nvm"
 alias m269-23j='cd "/home/raffaele/Documents/OpenUniversity/m269-23j";source /home/raffaele/venvs/m269-23j/bin/activate'
 alias nb='jupyter notebook &'
 alias allowed='python3.10 "/home/raffaele/Documents/OpenUniversity/m269-23j/allowed.py" -c "/home/raffaele/Documents/OpenUniversity/m269-23j/m269.json"'
+
 
 # pnpm
 export PNPM_HOME="/home/raffaele/.local/share/pnpm"
