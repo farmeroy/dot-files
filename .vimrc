@@ -50,6 +50,7 @@ nnoremap <c-l> <c-w>l
 call plug#begin('~/.vim/plugged')
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
   Plug 'alvan/vim-closetag'
+  Plug 'https://codeberg.org/esensar/nvim-dev-container'
   Plug 'cocopon/iceberg.vim'
   Plug 'cormacrelf/vim-colors-github'
   " Plug 'neoclide/vim-jsx-improve'
@@ -58,17 +59,17 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   Plug 'kamykn/popup-menu.nvim'
   Plug 'kamykn/spelunker.vim'
-  Plug 'maxmellon/vim-jsx-pretty'
+"  Plug 'maxmellon/vim-jsx-pretty'
   Plug 'neoclide/coc.nvim', {'branch':'release'} 
   Plug 'sonph/onehalf', {'rtp': 'vim'}
-  Plug 'pangloss/vim-javascript' 
+"  Plug 'pangloss/vim-javascript' 
   Plug 'preservim/nerdtree'
   Plug 'prettier/vim-prettier'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
   " Plug 'tpope/vim-sleuth' " sets tab withs
   Plug 'vim-airline/vim-airline'
-  Plug 'ruanyl/vim-sort-imports'
+"  Plug 'ruanyl/vim-sort-imports'
   Plug 'SirVer/ultisnips' " snipits
   Plug 'lervag/vimtex'
   Plug 'vimwiki/vimwiki'
@@ -88,11 +89,17 @@ call plug#end()
 " Nerdtree Settings
 
 " handle formating for large jsx files
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+" autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+" autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 
-" Plugin Settings ---------------------------------------------{{{
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+" this was preventing auto format if there is not a config, mostly i don't
+" need config:
+"let g:prettier#autoformat_config_present = 1 
+"
+"Plugin Settings ---------------------------------------------{{{
 " spelunker settings 
 let g:spelunker_disable_uri_checking = 1
 let g:spelunker_disable_email_checking = 1
@@ -199,22 +206,22 @@ nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocActionAsync('format')
+" command! -nargs=0 Format :call CocActionAsync('format')
 
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer
 " and then write the file
-command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport') 
-nnoremap <leader>or :OR<CR>
+ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport') 
+ nnoremap <leader>or :OR<CR>
 " format on save
 "autocmd BufWritePre *.jsx :silent call CocAction('runCommand', 'editor.action.organizeImport') " this creates issues with eslint
 
 " " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
@@ -308,6 +315,8 @@ require('telescope').setup {
 }
 -- require('telescope').load_extension('fzf')
  require('telescope').load_extension('media_files')
+-- docker nvim-dev-container
+require("devcontainer").setup{}
 EOF
 
 :nnoremap <leader>ff :Telescope find_files<CR>
