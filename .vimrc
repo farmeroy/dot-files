@@ -59,17 +59,17 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   Plug 'kamykn/popup-menu.nvim'
   Plug 'kamykn/spelunker.vim'
-"  Plug 'maxmellon/vim-jsx-pretty'
+ Plug 'maxmellon/vim-jsx-pretty'
   Plug 'neoclide/coc.nvim', {'branch':'release'} 
   Plug 'sonph/onehalf', {'rtp': 'vim'}
-"  Plug 'pangloss/vim-javascript' 
+ Plug 'pangloss/vim-javascript' 
   Plug 'preservim/nerdtree'
   Plug 'prettier/vim-prettier'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
   " Plug 'tpope/vim-sleuth' " sets tab withs
   Plug 'vim-airline/vim-airline'
-"  Plug 'ruanyl/vim-sort-imports'
+ " Plug 'ruanyl/vim-sort-imports'
   Plug 'SirVer/ultisnips' " snipits
   Plug 'lervag/vimtex'
   Plug 'vimwiki/vimwiki'
